@@ -1,0 +1,204 @@
+.ant-layout-sider {
+    background: #1a1f36 !important;
+}
+
+.ant-menu.ant-menu-dark {
+    background: #1a1f36;
+}
+
+.ant-menu-item-group-title {
+    color: #a5b1c2 !important;
+    font-size: 12px;
+    padding: 16px 16px 8px !important;
+}
+
+.ant-layout-sider-trigger {
+    background: #141927 !important;
+}
+
+.ant-card-head-title {
+    font-weight: 500;
+}
+
+.ant-card {
+    border-radius: 8px;
+}
+
+.ant-divider {
+    margin: 24px 0;
+    border-width: 2px;
+}
+
+.ant-tag {
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+
+/* Ajout des styles pour les tabs */
+
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab {
+    border: none;
+    background: transparent;
+    padding: 8px 16px;
+}
+
+.ant-tabs-card>.ant-tabs-nav .ant-tabs-tab-active {
+    background: transparent;
+    border-bottom: 2px solid #722ED1;
+}
+
+.ant-tabs-tab-btn {
+    color: #666;
+    font-size: 14px;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #722ED1 !important;
+}
+
+.ant-tabs-nav {
+    margin-bottom: 24px !important;
+}
+
+
+/* Ajout des styles pour la mise en page des questions/réponses */
+
+.ant-row {
+    align-items: flex-start;
+}
+
+.ant-card .ant-row {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 16px 0;
+}
+
+.ant-card .ant-row:last-child {
+    border-bottom: none;
+}
+
+
+/* Ajustement de l'espacement */
+
+.ant-card .ant-col {
+    padding: 8px 16px;
+}
+
+
+/* Styles pour l'en-tête */
+
+.ant-card.ant-card-bordered {
+    box-shadow: none;
+}
+
+.ant-card-body {
+    padding: 16px;
+}
+
+
+/* Pour les espaces verticaux */
+
+.ant-space-vertical {
+    width: 100%;
+}
+
+
+/* Pour les tags */
+
+.ant-space-wrap {
+    gap: 8px;
+}
+
+
+/* Styles responsifs */
+
+@media (max-width: 768px) {
+    .ant-tabs-tab {
+        padding: 8px !important;
+    }
+    .ant-tabs-tab-btn {
+        font-size: 12px;
+    }
+    .ant-card-body {
+        padding: 12px;
+    }
+    .ant-space {
+        gap: 8px !important;
+    }
+    .ant-divider {
+        margin: 16px 0;
+    }
+    .ant-card .ant-card-head {
+        padding: 0 12px;
+        min-height: 40px;
+    }
+    .ant-card .ant-card-head-title {
+        padding: 12px 0;
+    }
+    .ant-tabs-left>.ant-tabs-content-holder {
+        padding-left: 8px;
+    }
+    .ant-tabs-right>.ant-tabs-content-holder {
+        padding-right: 8px;
+    }
+}
+
+
+/* Ajustements pour les très petits écrans */
+
+@media (max-width: 375px) {
+    .ant-card-body {
+        padding: 8px;
+    }
+    .ant-space {
+        gap: 4px !important;
+    }
+    .ant-tabs-tab {
+        padding: 4px !important;
+    }
+}
+
+
+/* Amélioration de la lisibilité sur mobile */
+
+@media (max-width: 768px) {
+    .ant-typography {
+        font-size: 14px;
+    }
+    h4.ant-typography {
+        font-size: 18px;
+    }
+    .ant-tag {
+        font-size: 11px;
+        padding: 2px 6px;
+    }
+}
+
+
+/* Ajout des styles pour le sidebar mobile */
+
+@media (max-width: 768px) {
+    .ant-layout-sider {
+        box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+    }
+    .ant-layout-sider-children {
+        height: 100vh;
+        overflow-y: auto;
+    }
+    /* Empêcher le défilement du body quand le sidebar est ouvert */
+    body.sider-open {
+        overflow: hidden;
+    }
+}
+
+
+/* Animation du sidebar */
+
+.ant-layout-sider {
+    transition: all 0.2s !important;
+}
+
+.ant-layout {
+    transition: margin-left 0.2s !important;
+}
