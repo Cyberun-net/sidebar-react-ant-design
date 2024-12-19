@@ -9,15 +9,13 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu,  MenuProps } from 'antd';
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Routes } from "react-router-dom";
+import { Link,  } from "react-router-dom";
 
 const {  Content, Sider } = Layout;
 
 
 import './App.css';
-import Solution from './pages/Solutions';
-import Vendors from './pages/Vendors';
-import Organization from './pages/Organization';
+import { MyRoutes } from './routes/Routes';
 
 const menuItems: MenuProps['items'] = [
   {
@@ -167,12 +165,7 @@ const App = () => {
           background: '#fff', 
           minHeight: 280,
         }}>
-          <Routes>
-            <Route path="/" element={<Solution />} />
-            <Route path="/solutions" element={<Solution />} />
-            <Route path="/vendors" element={<Vendors />} />
-            <Route path="/organization" element={<Organization />} />
-          </Routes>
+            <MyRoutes/>
         </Content>
       </Layout>
     </Layout>
