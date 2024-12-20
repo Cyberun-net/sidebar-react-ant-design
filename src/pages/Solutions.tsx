@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Typography, Space, Row, Col, Tag, Divider, Tabs } from 'antd';
+import { Card, Typography, Space, Row, Col, Tag, Divider } from 'antd';
+import { useParams } from 'react-router-dom';
 
 const { Title, Text, Link: AntLink } = Typography;
 
@@ -60,8 +61,8 @@ const tabsData = {
       }
     ]
   },
-  data: {
-    key: 'data',
+  datamanagement: {
+    key: 'data-management',
     tab: 'SOLUTION - DATA MANAGEMENT',
     sections: [
       {
@@ -86,6 +87,7 @@ const tabsData = {
 };
 
 const Solutions: React.FC = () => {
+  const { tab = 'main' } = useParams();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -98,12 +100,12 @@ const Solutions: React.FC = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  const tabItems = Object.values(tabsData).map(tabData => ({
-    key: tabData.key,
-    label: tabData.tab,
-    children: (
+ 
+  const activeTabData = tabsData[tab as keyof typeof tabsData];
+  
+  const content = activeTabData ? (
       <Space direction="vertical" size="large" style={{ width: '100%' }}>
-        {tabData.sections.map((section, sectionIndex) => (
+      {activeTabData.sections.map((section, sectionIndex) => (
           <Card title={section.title} key={sectionIndex}>
             <Row gutter={[16, 16]}>
               {section.questions.map((item, index) => (
@@ -122,11 +124,10 @@ const Solutions: React.FC = () => {
           </Card>
         ))}
       </Space>
-    ),
-  }));
+  ) : null;
 
   return (
-    <div>
+    <div style={{ padding: '10px' }}>
       {/* Solution Header */}
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} md={8}>
@@ -168,16 +169,7 @@ const Solutions: React.FC = () => {
 
       <Divider style={{ borderColor: '#722ED1' }} />
 
-      {/* Tabs Section */}
-      <Tabs 
-        defaultActiveKey="main" 
-        type="card"
-        tabPosition="top"
-        items={tabItems}
-        style={{ 
-          minHeight: '60vh',
-        }}
-      />
+      {content}
     </div>
   );
 };

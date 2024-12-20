@@ -10,6 +10,7 @@ import {
 import { Layout, Menu,  MenuProps } from 'antd';
 import React, { useState, useEffect } from 'react';
 import { Link,  } from "react-router-dom";
+import Header from './components/Header';
 
 const {  Content, Sider } = Layout;
 
@@ -21,60 +22,68 @@ const menuItems: MenuProps['items'] = [
   {
     key: 'solution',
     type: 'group',
-    label: 'SOLUTION',
+    label: (
+      <>
+        <SafetyOutlined style={{ marginRight: 8 }} />
+        SOLUTION
+      </>
+    ),
     children: [
       {
-        key: 'frameworks',
-        icon: <SafetyOutlined />,
-        label: <Link to="/solutions">Solution</Link>,
+        key: 'main',
+        label: <Link to="/solutions/main">MAIN</Link>,
       },
       {
-        key: 'controls',
-        icon: <AuditOutlined />,
-        label: <Link to="/controls">Controls</Link>,
+        key: 'security',
+        label: <Link to="/solutions/security">SECURITY</Link>,
       },
       {
-        key: 'monitors',
-        icon: <MonitorOutlined />,
-        label: <Link to="/monitors">Monitors</Link>,
+        key: 'datamanagement',
+        label: <Link to="/solutions/datamanagement">DATA MANAGEMENT</Link>,
       },
     ],
   },
   {
     key: 'vendors',
     type: 'group',
-    label: 'VENDORS',
+    label: (
+      <>
+        <CodeOutlined style={{ marginRight: 8 }} />
+        VENDORS
+      </>
+    ),
     children: [
       {
-        key: 'attack-surface',
-        icon: <CodeOutlined />,
-        label: <Link to="/vendors">Attack surface</Link>,
+        key: 'vendor-main',
+        label: <Link to="/vendors/main">MAIN</Link>,
       },
       {
-        key: 'code-security',
-        icon: <SafetyOutlined />,
-        label: <Link to="/code-security">Code security</Link>,
+        key: 'vendor-organization',
+        label: <Link to="/vendors/organization">ORGANIZATION</Link>,
       },
     ],
   },
   {
     key: 'organization',
     type: 'group',
-    label: 'ORGANIZATION',
+    label: (
+      <>
+        <TeamOutlined style={{ marginRight: 8 }} />
+        ORGANIZATION
+      </>
+    ),
     children: [
       {
         key: 'people',
-        icon: <TeamOutlined />,
         label: <Link to="/people">People</Link>,
       },
       {
         key: 'devices',
-        icon: <AppstoreOutlined />,
         label: <Link to="/devices">Devices</Link>,
       },
     ],
   },
-] ;
+];
 
 const App = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -140,6 +149,7 @@ const App = () => {
         marginLeft: isMobile ? 0 : (collapsed ? 50 : 80),
         transition: 'margin 0.2s'
       }}>
+        <Header />
         {isMobile && (
           <div 
             style={{ 
@@ -160,8 +170,9 @@ const App = () => {
           </div>
         )}
         <Content style={{ 
-          margin: isMobile ? '48px 8px 16px' : '24px 16px', 
-          padding: isMobile ? 16 : 24, 
+          margin: isMobile ? '48px 8px 16px' : '22px 0px 22px', 
+          marginRight: 10, 
+          padding: isMobile ? 10 : 20, 
           background: '#fff', 
           minHeight: 280,
         }}>

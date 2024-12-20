@@ -7,7 +7,8 @@ export const MyRoutes = ()=>{
     return (
 <Routes>
             <Route path="/" element={<Solutions />} />
-            <Route path="/solutions" element={<Solutions/>} />
+            <Route path="/solutions/:tab" element={<Solutions />} />
+            <Route path="/vendors/:tab" element={<Vendors />} />
             <Route path="/vendors" element={<Vendors />} />
             <Route path="/organization" element={<Organization />} />
           </Routes>
