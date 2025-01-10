@@ -1,214 +1,272 @@
-.ant-layout-sider {
-    background: #f5f5f5 !important;
-    position: sticky;
-    top: 64px;
-    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+.ant-layout-header .menu-button {
+  font-size: 50px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.ant-card-head-title {
+  font-weight: 500;
+}
+
+.ant-card {
+  border-radius: 8px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ant-tag {
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+
+/* Ajout des styles pour les tabs */
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+}
+
+.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
+  background: transparent;
+}
+
+.ant-tabs-tab-btn {
+  color: darkgray;
+  font-size: 14px;
+}
+
+.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #a349a4 !important;
+}
+
+.ant-tabs-nav {
+  margin-bottom: 24px !important;
+}
+
+
+/* Ajout des styles pour la mise en page des questions/réponses */
+
+.ant-row {
+  align-items: flex-start;
+  border-radius: 14px;
+}
+
+.ant-card .ant-row {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 0;
+}
+
+.ant-card .ant-row:last-child {
+  border-bottom: none;
+}
+
+
+/* Ajustement de l'espacement */
+
+.ant-card .ant-col {
+  padding: 8px 16px;
+}
+
+
+/* Styles pour l'en-tête */
+
+.ant-card.ant-card-bordered {
+  box-shadow: none;
+}
+
+.ant-card-body {
+  padding: 16px;
+  border-radius: 14px;
+}
+
+
+/* Pour les espaces verticaux */
+
+.ant-space-vertical {
+  width: 100%;
+}
+
+
+/* Pour les tags */
+
+.ant-space-wrap {
+  gap: 8px;
+}
+
+
+/* Styles responsifs */
+
+@media (max-width: 768px) {
+  .ant-tabs-tab {
+    padding: 8px !important;
   }
-  
-  .ant-menu.ant-menu-dark {
-    background: #f5f5f5;
-  }
-  
-  .ant-menu-item-group-title {
-    color: #a5b1c2 !important;
-    font-size: 12px;
-    padding: 16px 16px 8px !important;
-  }
-  
-  .ant-layout-sider-trigger {
-    background: #141927 !important;
-  }
-  
-  .ant-layout-header .menu-button {
-    font-size: 50px;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .ant-card-head-title {
-    font-weight: 500;
-  }
-  
-  .ant-card {
-    border-radius: 8px;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .ant-tag {
-    border-radius: 4px;
-    padding: 4px 8px;
-    font-size: 12px;
-  }
-  
-  /* Ajout des styles pour les tabs */
-  
-  .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
-    border: none;
-    background: transparent;
-    padding: 8px 16px;
-  }
-  
-  .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active {
-    background: transparent;
-  }
-  
   .ant-tabs-tab-btn {
-    color: darkgray;
-    font-size: 14px;
+    font-size: 12px;
   }
-  
-  .ant-tabs-tab-active .ant-tabs-tab-btn {
-    color: #a349a4 !important;
-  }
-  
-  .ant-tabs-nav {
-    margin-bottom: 24px !important;
-  }
-  
-  /* Ajout des styles pour la mise en page des questions/réponses */
-  
-  .ant-row {
-    align-items: flex-start;
-    border-radius: 14px;
-  }
-  
-  .ant-card .ant-row {
-    border-bottom: 1px solid #f0f0f0;
-    padding: 16px 0;
-  }
-  
-  .ant-card .ant-row:last-child {
-    border-bottom: none;
-  }
-  
-  /* Ajustement de l'espacement */
-  
-  .ant-card .ant-col {
-    padding: 8px 16px;
-  }
-  
-  /* Styles pour l'en-tête */
-  
-  .ant-card.ant-card-bordered {
-    box-shadow: none;
-  }
-  
   .ant-card-body {
-    padding: 16px;
+    padding: 12px;
+  }
+  .ant-space {
+    gap: 8px !important;
+  }
+  .ant-card .ant-card-head {
+    padding: 0 12px;
+    min-height: 40px;
     border-radius: 14px;
   }
-  
-  /* Pour les espaces verticaux */
-  
-  .ant-space-vertical {
-    width: 100%;
+  .ant-card .ant-card-head-title {
+    padding: 12px 0;
   }
-  
-  /* Pour les tags */
-  
-  .ant-space-wrap {
-    gap: 8px;
+  .ant-tabs-left > .ant-tabs-content-holder {
+    padding-left: 8px;
   }
-  
-  /* Styles responsifs */
-  
-  @media (max-width: 768px) {
-    .ant-tabs-tab {
-      padding: 8px !important;
-    }
-    .ant-tabs-tab-btn {
-      font-size: 12px;
-    }
-    .ant-card-body {
-      padding: 12px;
-    }
-    .ant-space {
-      gap: 8px !important;
-    }
-    .ant-card .ant-card-head {
-      padding: 0 12px;
-      min-height: 40px;
-      border-radius: 14px;
-    }
-    .ant-card .ant-card-head-title {
-      padding: 12px 0;
-    }
-    .ant-tabs-left > .ant-tabs-content-holder {
-      padding-left: 8px;
-    }
-    .ant-tabs-right > .ant-tabs-content-holder {
-      padding-right: 8px;
-    }
-  
-    .ant-layout-header {
-      padding: 0 16px;
-    }
+  .ant-tabs-right > .ant-tabs-content-holder {
+    padding-right: 8px;
   }
-  
-  /* Ajustements pour les très petits écrans */
-  
-  @media (max-width: 375px) {
-    .ant-card-body {
-      padding: 8px;
-      border-radius: 14px;
-    }
-    .ant-space {
-      gap: 4px !important;
-    }
-    .ant-tabs-tab {
-      padding: 4px !important;
-    }
-  }
-  
-  /* Amélioration de la lisibilité sur mobile */
-  
-  @media (max-width: 768px) {
-    .ant-typography {
-      font-size: 14px;
-    }
-    h4.ant-typography {
-      font-size: 18px;
-    }
-    .ant-tag {
-      font-size: 11px;
-      padding: 2px 6px;
-    }
-  }
-  
-  /* Add these styles for the header */
-  
-  .ant-layout-header {
-    background: #a349a4 !important;
-    height: 64px;
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .ant-dropdown-menu {
-    border-radius: 8px;
-  }
-  
-  .ant-dropdown-menu-item {
-    padding: 8px 16px;
-  }
+
   .ant-layout-header {
     padding: 0 16px;
   }
-  
-  /* Animation du sidebar */
-  
-  .ant-layout-sider {
-    transition: all 0.2s !important;
+}
+
+
+/* Ajustements pour les très petits écrans */
+
+@media (max-width: 375px) {
+  .ant-card-body {
+    padding: 8px;
+    border-radius: 14px;
   }
-  
-  .ant-layout {
-    transition: margin-left 0.2s !important;
+  .ant-space {
+    gap: 4px !important;
   }
-  
+  .ant-tabs-tab {
+    padding: 4px !important;
+  }
+}
+
+
+/* Amélioration de la lisibilité sur mobile */
+
+@media (max-width: 768px) {
+  .ant-typography {
+    font-size: 14px;
+  }
+  h4.ant-typography {
+    font-size: 18px;
+  }
+  .ant-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+}
+
+
+/* Add these styles for the header */
+
+.ant-layout-header {
+  background: #a349a4 !important;
+  height: 55px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+
+.ant-dropdown-menu {
+  border-radius: 8px;
+}
+
+.ant-dropdown-menu-item {
+  padding: 8px 16px;
+}
+.ant-layout-header {
+  padding: 0 16px;
+}
+
+
+/* Animation du sidebar */
+
+.ant-layout {
+  transition: margin-left 0.2s !important;
+}
+
+.ant-menu {
+  background: #f5f5f5 !important;
+  margin-left: -10px !important;
+  padding-left: 0 !important;
+  border-right: none !important;
+  box-shadow: none !important;
+  width: 225px !important;
+  max-width: 225px !important;
+  min-width: 225px !important;
+  margin-left: 24px;
+}
+
+.ant-layout-sider {
+  background: #f5f5f5 !important;
+  position: sticky;
+  top: 64px;
+  transition: all 0.2s !important;
+}
+
+.ant-menu-item-group-title {
+  color: #a5b1c2 !important;
+  font-size: 12px;
+  padding: 6px 16px 8px !important;
+
+}
+
+.ant-layout-sider-trigger {
+  background: #141927 !important;
+}
+
+.ant-menu-item a {
+  font-family: 'Inter', sans-serif;
+  color: #000000;
+
+}
+
+.ant-menu .ant-menu-item-selected {
+  background-color: #e6f7ff !important; 
+  margin-left: 50px; 
+  width: calc(100% - 40px) !important; 
+  border-radius: 4px; 
+  outline: none !important;
+  padding-left: none !important; 
+}
+
+.ant-menu .ant-menu-item a {
+  display: block;
+}
+
+
+/* Pour la barre verticale à gauche dans le sidebar */
+
+.ant-menu-item-group-title {
+  position: relative;
+  padding-left: 24px;
+}
+
+.ant-menu-item-group-title::before {
+  content: "";
+  position: absolute;
+  height: 80px;
+  left: 40px;
+  top: 100%;
+  bottom: 0;
+  width: 1.5px;
+  background-color: #b0b0b0;
+}
+.ant-menu-item-group:nth-child(1) .ant-menu-item-group-title::before {
+  height: 120px;
+}
+
+
+
+
