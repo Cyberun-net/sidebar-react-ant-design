@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Layout, Avatar, Dropdown, Space } from "antd";
 import { UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
@@ -29,7 +29,10 @@ const Header: React.FC = () => {
   };
 
   return (
-    <AntHeader className="custom-header">
+    <AntHeader
+      className="custom-header"
+      style={{ display: "flex", justifyContent: "flex-end" }}
+    >
       <Dropdown
         menu={{ items, onClick: handleMenuClick }}
         placement="bottomRight"
