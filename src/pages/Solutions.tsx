@@ -127,11 +127,11 @@ const Solutions: React.FC = () => {
           backgroundColor: "#ffffff",
           padding: "24px",
           marginTop: "-13px",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
           marginRight: "none",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "105%",
+          width: "115%",
         }}
       >
         <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
@@ -192,9 +192,9 @@ const Solutions: React.FC = () => {
         style={{
           borderColor: "#a349a4",
           borderWidth: "2px",
-          width: "110%",
+          width: "115%",
           margin: "0",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
         }}
       />
 
@@ -202,11 +202,11 @@ const Solutions: React.FC = () => {
         style={{
           backgroundColor: "#ffffff",
           paddingLeft: "10px",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
           marginTop: "15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "105%",
+          width: "110%",
         }}
       >
         {content}
