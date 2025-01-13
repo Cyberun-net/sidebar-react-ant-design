@@ -172,108 +172,105 @@ const App = () => {
         style={{ margin: 0, backgroundColor: "#a349a4", height: "4px" }}
       />
       <Layout>
-      <Sider
-  collapsible
-  collapsed={collapsed}
-  breakpoint="lg"
-  collapsedWidth={isMobile ? 0 : 80}
-  trigger={null}
-  style={{
-    background: "#f5f5f5",
-    position: "fixed",
-    top: 40,
-    height: "calc(100vh - 64px)",
-    zIndex: 999,
-  }}
->
-  <div style={{ padding: "16px", textAlign: "center" }}>
-    <img
-      src="./logo/image.png"
-      alt="Cloudflare"
-      style={{ width: collapsed ? "40px" : "80%" , marginTop: '25px'}}
-    />
-  </div>
-  <div
-  style={{
-    display: 'flex', 
-    alignItems: 'center', 
-    justifyContent: 'center', 
-    gap: '8px', 
-    marginTop: '20px', 
-    marginLeft: '20px',
-    marginRight:'-18px',
-  }}
->
-  {/* Icone */}
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '40px', 
-      height: '40px',
-      marginLeft: '-20px',
-      borderRadius: '50%', 
-      backgroundColor: '#fff',  
-      border: '0.1px solid #6c757d' ,
-    }}
-  >
-<span
-  role="img"
-  aria-label="icon"
-  style={{
-    fontSize: '22px', 
-    filter: 'grayscale(100%)', 
-  }}
->
-  🔖
-</span>
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          breakpoint="lg"
+          collapsedWidth={isMobile ? 0 : 80}
+          trigger={null}
+          style={{
+            background: "#f5f5f5",
+            position: "fixed",
+            top: 40,
+            height: "calc(100vh - 64px)",
+            zIndex: 999,
+          }}
+        >
+          <div style={{ padding: "16px", textAlign: "center" }}>
+            <img
+              src="./logo/image.png"
+              alt="Cloudflare"
+              style={{ width: collapsed ? "40px" : "80%", marginTop: "25px" }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "8px",
+              marginTop: "20px",
+              marginLeft: "20px",
+              marginRight: "-18px",
+            }}
+          >
+            {/* Icone */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "40px",
+                height: "40px",
+                marginLeft: "-35px",
+                borderRadius: "50%",
+                backgroundColor: "#fff",
+                border: "0.1px solid #6c757d",
+              }}
+            >
+              <span
+                role="img"
+                aria-label="icon"
+                style={{
+                  fontSize: "22px",
+                  filter: "grayscale(100%)",
+                }}
+              >
+                🔖
+              </span>
+            </div>
 
-  </div>
+            {/* Bouton */}
+            <button
+              style={{
+                padding: "8px 30px",
+                fontSize: "15px",
+                fontWeight: "bold",
+                backgroundColor: "#000",
+                color: "#fff",
+                border: "none",
+                borderRadius: "64px",
+                cursor: "pointer",
+              }}
+            >
+              Get in touch
+            </button>
+          </div>
 
-  {/* Bouton */}
-  <button
-    style={{
-      padding: '8px 30px',
-      fontSize: '15px',
-      fontWeight: 'bold',
-      backgroundColor: '#000',
-      color: '#fff',
-      border: 'none',
-      borderRadius: '64px',
-      cursor: 'pointer',
-      
-    }}
-  >
-    Get in touch
-  </button>
-</div>
-
-  <Menu theme="light" mode="inline" items={menuItems} />
-</Sider>
-<div>
-  <Layout
-    style={{
-      marginLeft: collapsed ? (isMobile ? 0 : 120) : 250,
-      transition: "margin-left 0.2s",
-    }}
-  >
-    <Content
-      style={{
-        margin: "14px",
-        marginRight: 0,
-        marginTop: "55px",
-        borderTopLeftRadius: "14px",
-        padding: "24px",
-        background: "#f5f5f5",
-        minHeight: 280,
-        
-      }}
-    >
-      <MyRoutes />
-    </Content>
-  </Layout>
-</div>
+          <Menu theme="light" mode="inline" items={menuItems} />
+        </Sider>
+        <div>
+          <Layout
+            style={{
+              marginLeft: collapsed ? (isMobile ? 0 : 120) : 250,
+              transition: "margin-left 0.2s",
+            }}
+          >
+            <Content
+              style={{
+                margin: "14px",
+                marginRight: 0,
+                marginTop: "55px",
+                borderTopLeftRadius: "14px",
+                padding: "24px",
+                background: "#f5f5f5",
+                minHeight: 280,
+              }}
+            >
+              <MyRoutes />
+            </Content>
+          </Layout>
+        </div>
       </Layout>
     </Layout>
   );
