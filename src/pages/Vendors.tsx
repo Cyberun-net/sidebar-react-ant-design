@@ -100,10 +100,10 @@ const Vendors: React.FC = () => {
           backgroundColor: "#ffffff",
           padding: "24px",
           marginTop: "-13px",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "105%",
+          width: "115%",
         }}
       >
         {/* Vendor Header */}
@@ -165,9 +165,9 @@ const Vendors: React.FC = () => {
         style={{
           borderColor: "#a349a4",
           borderWidth: "2px",
-          width: "110%",
+          width: "115%",
           margin: "0",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
         }}
       />
 
@@ -175,11 +175,11 @@ const Vendors: React.FC = () => {
         style={{
           backgroundColor: "#ffffff",
           paddingLeft: "10px",
-          marginLeft: "-30px",
+          marginLeft: "-80px",
           marginTop: "15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "105%",
+          width: "115%",
         }}
       >
         {content}
