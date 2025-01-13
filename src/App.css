@@ -19,7 +19,6 @@
   font-size: 12px;
 }
 
-
 /* Ajout des styles pour les tabs */
 
 .ant-tabs-card > .ant-tabs-nav .ant-tabs-tab {
@@ -45,7 +44,6 @@
   margin-bottom: 24px !important;
 }
 
-
 /* Ajout des styles pour la mise en page des questions/réponses */
 
 .ant-row {
@@ -62,13 +60,11 @@
   border-bottom: none;
 }
 
-
 /* Ajustement de l'espacement */
 
 .ant-card .ant-col {
   padding: 8px 16px;
 }
-
 
 /* Styles pour l'en-tête */
 
@@ -81,20 +77,17 @@
   border-radius: 14px;
 }
 
-
 /* Pour les espaces verticaux */
 
 .ant-space-vertical {
   width: 100%;
 }
 
-
 /* Pour les tags */
 
 .ant-space-wrap {
   gap: 8px;
 }
-
 
 /* Styles responsifs */
 
@@ -131,7 +124,6 @@
   }
 }
 
-
 /* Ajustements pour les très petits écrans */
 
 @media (max-width: 375px) {
@@ -146,7 +138,6 @@
     padding: 4px !important;
   }
 }
-
 
 /* Amélioration de la lisibilité sur mobile */
 
@@ -163,21 +154,20 @@
   }
 }
 
-
 /* Add these styles for the header */
 
 .ant-layout-header {
-  background: #a349a4 !important; 
+  background: #a349a4 !important;
   height: 55px;
   position: fixed;
   top: 0;
   z-index: 1000;
-  width: 100%; /
-  left: 0; 
+  width: 100%;
+  /left: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 24px; 
-  box-sizing: border-box; 
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
 .ant-dropdown-menu {
@@ -191,19 +181,37 @@
   padding: 0 16px;
 }
 
-
 /* Animation du sidebar */
 
 .ant-menu {
   background: #f5f5f5 !important;
-  margin-left: -10px !important;
+  margin-left: -20px !important;
   padding-left: 0 !important;
   border-right: none !important;
   box-shadow: none !important;
   width: 225px !important;
   max-width: 225px !important;
   min-width: 225px !important;
-  margin-left: 24px;
+}
+
+.ant-menu-item {
+  margin: -2px 0 !important;
+  padding: 2px 24px !important;
+  line-height: 2 !important;
+  text-align: left !important;
+  height: auto !important;
+}
+
+.ant-menu-item a {
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  text-align: left !important;
+  line-height: 0.5 !important;
+}
+
+.ant-menu .ant-menu-item-selected {
+  clip-path: inset(0 0 0 45px);
+  border-radius: 14px;
 }
 
 .ant-layout-sider {
@@ -216,70 +224,43 @@
 .ant-menu-item-group-title {
   color: #a5b1c2 !important;
   font-size: 12px;
-  padding: 6px 16px 8px !important;
+  padding: 6px 16px 6px !important;
 }
 
 .ant-layout-sider-trigger {
   background: #141927 !important;
 }
 
-.ant-menu-item {
-  margin: -2px 0 !important; 
-  padding: 2px 24px !important; 
-  height: auto !important; 
-}
-
-.ant-menu-item a {
-  font-family: "Inter", sans-serif;
-  color: #000000;
-  text-align: left !important; 
-  line-height: 0.5 !important; 
-  
-}
-
-.ant-menu .ant-menu-item-selected {
-  background-color: #e6f7ff !important; 
-  margin-left: 45px !important; 
-  width: calc(100% - 40px) !important; 
-  border-radius: 4px; 
-  outline: none !important;
-  padding-left: 0 !important; 
-  text-align: left !important;
-}
-
-
 /* Pour la barre verticale à gauche dans le sidebar */
 
 .ant-menu-item-group-title {
   position: relative;
   padding-left: 24px;
-
 }
 
 .ant-menu-item-group-title::before {
   content: "";
   position: absolute;
-  height: 80px;
+  height: 60px;
   left: 40px;
   top: 100%;
   bottom: 0;
   width: 1.5px;
   background-color: #b0b0b0;
-
 }
 .ant-menu-item-group:nth-child(1) .ant-menu-item-group-title::before {
-  height: 120px;
+  height: 88px;
 }
-
 
 /*Pour uniformiser le background*/
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow-x: hidden; 
-  background-color: #f5f5f5; 
+  overflow-x: hidden;
+  background-color: #f5f5f5;
   box-sizing: border-box;
 }
