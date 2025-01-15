@@ -231,7 +231,7 @@ const Vendors: React.FC = () => {
           backgroundColor: "#ffffff",
           paddingLeft: "10px",
           marginLeft: "-80px",
-          marginTop: "15px",
+          marginTop: "-15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
           width: "200%",
