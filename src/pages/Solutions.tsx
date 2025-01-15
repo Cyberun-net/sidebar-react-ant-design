@@ -2,15 +2,26 @@ import React, { useState, useEffect } from "react";
 import { Card, Typography, Space, Row, Col, Divider, Tag } from "antd";
 import { useParams } from "react-router-dom";
 import { JsonForms } from "@jsonforms/react";
-import { materialRenderers } from "@jsonforms/material-renderers";
-import { vanillaRenderers } from "@jsonforms/vanilla-renderers"; // Ajout des vanilla renderers
+import CustomHorizontalRenderer, {
+  customHorizontalRendererTester,
+} from "../components/CustomHorizontalRenderer";
+
+import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
+
+const renderers = [
+  ...vanillaRenderers,
+  {
+    tester: customHorizontalRendererTester,
+    renderer: CustomHorizontalRenderer,
+  },
+];
 
 const { Title, Text, Link: AntLink } = Typography;
 
 const tabsData = {
   main: {
     key: "main",
-    tab: "VENDOR - MAIN",
+    tab: "SOLUTION - MAIN",
     sections: [
       {
         title: "Vendor Information",
@@ -37,77 +48,48 @@ const tabsData = {
           type: "VerticalLayout",
           elements: [
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Name" },
-                { type: "Control", scope: "#/properties/a01" },
-              ],
+              type: "Control",
+              scope: "#/properties/a01",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Vendor" },
-                { type: "Control", scope: "#/properties/a02" },
-              ],
+              type: "Control",
+              scope: "#/properties/a02",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Address" },
-                { type: "Control", scope: "#/properties/a07" },
-              ],
+              type: "Control",
+              scope: "#/properties/a07",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Website" },
-                { type: "Control", scope: "#/properties/a04" },
-              ],
+              type: "Control",
+              scope: "#/properties/a04",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Company Size" },
-                { type: "Control", scope: "#/properties/a11" },
-              ],
+              type: "Control",
+              scope: "#/properties/a11",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Contact Email" },
-                { type: "Control", scope: "#/properties/a05" },
-              ],
+              type: "Control",
+              scope: "#/properties/a05",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Phone Number" },
-                { type: "Control", scope: "#/properties/a06" },
-              ],
+              type: "Control",
+              scope: "#/properties/a06",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Description" },
-                { type: "Control", scope: "#/properties/a08" },
-              ],
+              type: "Control",
+              scope: "#/properties/a08",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Overview" },
-                { type: "Control", scope: "#/properties/a09" },
-              ],
+              type: "Control",
+              scope: "#/properties/a09",
             },
             {
-              type: "HorizontalLayout",
-              elements: [
-                { type: "Label", text: "Keywords" },
-                { type: "Control", scope: "#/properties/a10" },
-              ],
+              type: "Control",
+              scope: "#/properties/a10",
             },
           ],
         },
+
         data: {
           a01: "Phosforea",
           a02: "Phosforea",
@@ -117,9 +99,7 @@ const tabsData = {
           a05: "contact@phosforea.com",
           a06: "+330561170854",
           a08: "Cyber awareness and compliance management",
-          a09:
-            "Phosforea, a SaaS publisher of LMS and phishing simulation platforms, supports companies in their cybersecurity awareness and training projects.",
-          a10: ["Cybersecurity", "Training", "Awareness"],
+          a09: "Phosforea, a SaaS publisher of LMS and phishing simulation",
         },
       },
     ],
@@ -129,98 +109,481 @@ const tabsData = {
     tab: "SOLUTION - SECURITY",
     sections: [
       {
-        title: "Security Information",
         schema: {
-          title: "Security Information",
           type: "object",
           properties: {
             p01: { type: "string", title: "Compliance" },
             p07: { type: "string", title: "Risk Level" },
             p08: {
               type: "array",
-              title: "Countries",
+              title: "Countries of Operation",
               items: { type: "string" },
             },
-          },
-        },
-        uiSchema: {
-          type: "VerticalLayout",
-          elements: [
-            { type: "Control", scope: "#/properties/p01" },
-            { type: "Control", scope: "#/properties/p07" },
-            { type: "Control", scope: "#/properties/p08" },
-          ],
-        },
-        data: {
-          p01: "ISO 27001 Certified",
-          p07: "Low",
-          p08: ["France", "Germany"],
-        },
-      },
-    ],
-  },
-  datamanagement: {
-    key: "data-management",
-    tab: "SOLUTION - DATA MANAGEMENT",
-    sections: [
-      {
-        title: "Data Management Information",
-        schema: {
-          title: "Data Management Information",
-          type: "object",
-          properties: {
-            d01: { type: "string", title: "Is data collected?" },
-            d02: { type: "string", title: "Data Retention Policy" },
-            d05: {
+            // Certification
+            c01: {
               type: "array",
-              title: "Countries where data is stored",
+              title: "Certifications Obtained",
               items: { type: "string" },
             },
+            c03: {
+              type: "array",
+              title: "Certifications in Progress",
+              items: { type: "string" },
+            },
+            // HR
+            h01: { type: "string", title: "HR Management Details" },
+            h02: { type: "string", title: "HR Policies" },
+            // Dependence Risk
+            r01: {
+              type: "array",
+              title: "Key Dependencies",
+              items: { type: "string" },
+            },
+            r04: { type: "string", title: "External Audit Availability" },
+            r05: { type: "string", title: "Audit Frequency" },
+            r07: { type: "string", title: "Disaster Recovery Plans" },
+            r08: { type: "string", title: "Backup Procedures" },
+            r09: { type: "string", title: "Data Loss Incidents" },
+            r10: { type: "string", title: "Data Security Guarantee" },
+            r11: { type: "string", title: "SaaS Solution Specificities" },
+            r12: { type: "string", title: "Monitoring Tools" },
+            r13: { type: "string", title: "System Updates Frequency" },
+            r14: { type: "string", title: "Regular Pentesting" },
+            r15: { type: "string", title: "Additional Notes" },
+            // Quality
+            q01: { type: "string", title: "Quality Assurance Plan" },
+            q02: { type: "string", title: "Quality Standards" },
+            q03: { type: "string", title: "Quality Certifications" },
+            q07: { type: "string", title: "Continuous Improvement Processes" },
+            q11: { type: "string", title: "Additional Comments on Quality" },
+            // Transparency
+            t01: { type: "string", title: "Transparency Policies" },
+            t02: { type: "string", title: "Information Accessibility" },
+            // Access
+            x01: { type: "string", title: "Access Management Policies" },
+            x03: { type: "string", title: "Access Logs Monitoring" },
+            x07: { type: "string", title: "Comments on Access Policies" },
+            // Interface Training
+            i01: {
+              type: "array",
+              title: "Languages Supported",
+              items: { type: "string" },
+            },
+            i03: { type: "string", title: "Interface Owner" },
+            i04: { type: "string", title: "Comments on Training" },
+            // Support
+            s01: {
+              type: "array",
+              title: "Support Responsibility",
+              items: { type: "string" },
+            },
+            s02: {
+              type: "array",
+              title: "Support Countries",
+              items: { type: "string" },
+            },
+            s03: { type: "string", title: "Support SLAs" },
+            s05: {
+              type: "array",
+              title: "Additional Support Locations",
+              items: { type: "string" },
+            },
+            s06: {
+              type: "array",
+              title: "Support Languages",
+              items: { type: "string" },
+            },
+            s09: { type: "string", title: "Support Procedures" },
+            s12: {
+              type: "array",
+              title: "Training Languages",
+              items: { type: "string" },
+            },
+            s14: { type: "string", title: "Comments on Support" },
           },
         },
         uiSchema: {
           type: "VerticalLayout",
           elements: [
-            { type: "Control", scope: "#/properties/d01" },
-            { type: "Control", scope: "#/properties/d02" },
-            { type: "Control", scope: "#/properties/d05" },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/p01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/p07" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/p08" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/c01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/c03" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/h01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/h02" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r04" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r05" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r07" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r08" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r09" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r10" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r11" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r12" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r13" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r14" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/r15" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/q01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/q02" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/q03" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/q07" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/q11" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/t01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/t02" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/x01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/x03" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/x07" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/i01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/i03" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/i04" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s01" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s02" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s03" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s05" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s06" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s12" }],
+            },
+            {
+              type: "HorizontalLayout",
+              elements: [{ type: "Control", scope: "#/properties/s14" }],
+            },
           ],
         },
         data: {
-          d01: "yes",
-          d02: "Etant RGPD compliance nous nous référons à ce document",
-          d05: ["France", "UK"],
-        },
-      },
-      {
-        title: "Risk Information",
-        schema: {
-          title: "Dependance Risk",
-          type: "object",
-          properties: {
-            r04: { type: "string", title: "Risk Assessment Completed?" },
-            r05: { type: "string", title: "Audit Methodology" },
-            r13: { type: "string", title: "Audit Frequency" },
-            r14: { type: "string", title: "Pentest Policy" },
-          },
-        },
-        uiSchema: {
-          type: "VerticalLayout",
-          elements: [
-            { type: "Control", scope: "#/properties/r04" },
-            { type: "Control", scope: "#/properties/r05" },
-            { type: "Control", scope: "#/properties/r13" },
-            { type: "Control", scope: "#/properties/r14" },
-          ],
-        },
-        data: {
+          p01: "?unknown",
+          p07: "?unknown",
+          p08: ["France"],
+          c01: ["?unknown"],
+          c03: ["?unknown"],
+          h01: "?unknown",
+          h02: "?unknown",
+          r01: ["?unknown"],
           r04: "yes",
           r05: "on demand audit",
+          r07: "?unknown",
+          r08: "?unknown",
+          r09: "?unknown",
+          r10: "no",
+          r11: "not applicable as we provide SaaS solution",
+          r12: "?unknown",
           r13: "monthly (or more)",
           r14: "regular pentest",
+          r15: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
+          q01: "?unknown",
+          q02: "?unknown",
+          q03: "?unknown",
+          q07: "?unknown",
+          q11: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
+          t01: "?unknown",
+          t02: "?unknown",
+          x01: "?unknown",
+          x03: "?unknown",
+          x07: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
+          i01: ["French", "Spanish", "English"],
+          i03: "the vendor",
+          i04: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
+          s01: ["vendor"],
+          s02: ["France"],
+          s03: "?unknown",
+          s05: ["Spain"],
+          s06: ["French", "Spanish", "English"],
+          s09: "?unknown",
+          s12: ["French", "Spanish", "English"],
+          s14: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
         },
       },
     ],
+    datamanagement: {
+      key: "data-management",
+      tab: "SOLUTION - DATA MANAGEMENT",
+      sections: [
+        {
+          title: "Data Management",
+          schema: {
+            type: "object",
+            properties: {
+              // Data
+              d01: { type: "string", title: "GDPR Compliance" },
+              d02: { type: "string", title: "GDPR Reference Document" },
+              d03: { type: "string", title: "Data Classification" },
+              d05: {
+                type: "array",
+                title: "Data Storage Countries",
+                items: { type: "string" },
+              },
+              d06: { type: "string", title: "Data Status" },
+
+              // Protection
+              e02: {
+                type: "array",
+                title: "Data Protection Methods",
+                items: { type: "string" },
+              },
+              e01: { type: "string", title: "Encryption at Rest" },
+              e03: { type: "string", title: "Encryption in Transit" },
+              e05: { type: "string", title: "Access Control Mechanisms" },
+              e07: {
+                type: "string",
+                title: "Additional Comments on Protection",
+              },
+
+              // Management (MGT)
+              m01: { type: "string", title: "Data Input Methods" },
+              m02: { type: "string", title: "Authentication Methods" },
+              m03: { type: "string", title: "Data Governance" },
+
+              // Reversibility
+              w01: { type: "string", title: "Data Reversibility Procedures" },
+
+              // Compliance
+              f01: { type: "string", title: "Compliance Standards" },
+              f03: { type: "string", title: "Compliance Audits" },
+
+              // Customer
+              k01: { type: "string", title: "Customer Data Collected" },
+              k02: { type: "string", title: "Data Usage and Tracking" },
+              k04: { type: "string", title: "Access Rights to Data" },
+              k05: { type: "string", title: "Data Security Risk Level" },
+
+              // AI
+              z01: { type: "string", title: "AI Data Usage Policies" },
+            },
+          },
+          uiSchema: {
+            type: "VerticalLayout",
+            elements: [
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/d01" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/d02" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/d03" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/d05" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/d06" }],
+              },
+              // Protection
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/e02" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/e01" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/e03" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/e05" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/e07" }],
+              },
+              // Management (MGT)
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/m01" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/m02" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/m03" }],
+              },
+              // Reversibility
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/w01" }],
+              },
+              // Compliance
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/f01" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/f03" }],
+              },
+              // Customer
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/k01" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/k02" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/k04" }],
+              },
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/k05" }],
+              },
+              // AI
+              {
+                type: "HorizontalLayout",
+                elements: [{ type: "Control", scope: "#/properties/z01" }],
+              },
+            ],
+          },
+          data: {
+            d01: "yes",
+            d02: "Etant RGPD compliance nous nous référons à ce document",
+            d03: "?unknown",
+            d05: ["France"],
+            d06: "UNKNOWN",
+            e02: ["data at rest", "data in transit"],
+            e01: "?unknown",
+            e03: "?unknown",
+            e05: "?unknown",
+            e07: "The questions are in places rather ambiguous and hard to answer, more specificity would be helpful",
+            m01: "They are created by their employers and provided by the web form or file",
+            m02: "Two different ways : 1- directly by our application through email and password 2- SSO => IDP is the employer",
+            m03: "?unknown",
+            w01: "?unknown",
+            f01: "?unknown",
+            f03: "?unknown",
+            k01: "User first name and last name and e-mail address",
+            k02: "Connection data, Tracking data (training progress made)",
+            k04: "Only the administrator of the platform / No / Yes",
+            k05: "Very low",
+            z01: "?unknown",
+          },
+        },
+      ],
+    },
   },
 };
 const Solutions: React.FC = () => {
@@ -341,10 +704,7 @@ const Solutions: React.FC = () => {
                 schema={section.schema}
                 uischema={section.uiSchema}
                 data={section.data}
-                renderers={materialRenderers}
-                onChange={({ data }) =>
-                  console.log(`Form updated:`, JSON.stringify(data, null, 2))
-                }
+                renderers={renderers}
               />
             </Card>
           ))}
@@ -354,5 +714,4 @@ const Solutions: React.FC = () => {
   );
 };
 
-// Exportation au niveau supérieur
 export default Solutions;

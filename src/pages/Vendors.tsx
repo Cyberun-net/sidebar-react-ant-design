@@ -2,8 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Card, Typography, Space, Row, Col, Divider, Tag } from "antd";
 import { useParams } from "react-router-dom";
 import { JsonForms } from "@jsonforms/react";
+import CustomHorizontalRenderer, {
+  customHorizontalRendererTester,
+} from "../components/CustomHorizontalRenderer";
+
 import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
 
+const renderers = [
+  ...vanillaRenderers,
+  {
+    tester: customHorizontalRendererTester,
+    renderer: CustomHorizontalRenderer,
+  },
+];
 const { Text, Title, Link: AntLink } = Typography;
 
 const tabsData = {
@@ -12,7 +23,7 @@ const tabsData = {
     tab: "VENDOR - MAIN",
     sections: [
       {
-        title: "Vendor Information",
+        title: "Vendor Details",
         schema: {
           type: "object",
           properties: {
@@ -35,27 +46,21 @@ const tabsData = {
         uiSchema: {
           type: "VerticalLayout",
           elements: [
-            { type: "Control", scope: "#/properties/a01" }, // Name
-            { type: "Control", scope: "#/properties/a02" }, // Vendor
-            { type: "Control", scope: "#/properties/a07" }, // Address
-            { type: "Control", scope: "#/properties/a04" }, // Website
-            { type: "Control", scope: "#/properties/a11" }, // Company Size
-            { type: "Control", scope: "#/properties/a05" }, // Contact Email
-            { type: "Control", scope: "#/properties/a06" }, // Phone Number
-            { type: "Control", scope: "#/properties/a08" }, // Description
-            { type: "Control", scope: "#/properties/a09" }, // Overview
+            { type: "Control", scope: "#/properties/a01" },
+            { type: "Control", scope: "#/properties/a02" },
+            { type: "Control", scope: "#/properties/a07" },
+            { type: "Control", scope: "#/properties/a04" },
+            { type: "Control", scope: "#/properties/a11" },
+            { type: "Control", scope: "#/properties/a05" },
+            { type: "Control", scope: "#/properties/a06" },
+            { type: "Control", scope: "#/properties/a08" },
+            { type: "Control", scope: "#/properties/a09" },
             {
               type: "Control",
-              scope: "#/properties/a10", // Keywords
+              scope: "#/properties/a10",
               options: {
-                showSortButtons: false, // Supprime les boutons inutiles
-                showArrayValidation: false, // Supprime les boutons "Add/Delete"
                 detail: {
                   type: "VerticalLayout",
-                  elements: [
-                    { type: "Label", text: "Keyword List" },
-                    { type: "Control", scope: "#/properties/a10/items" },
-                  ],
                 },
               },
             },
@@ -70,61 +75,128 @@ const tabsData = {
           a05: "contact@phosforea.com",
           a06: "+330561170854",
           a08: "Cyber awareness and compliance management",
-          a09:
-            "Phosforea, a SaaS publisher of LMS and phishing simulation platforms, supports companies in their cybersecurity awareness and training projects.",
+          a09: "Phosforea, a SaaS publisher of LMS and phishing simulation",
           a10: ["Cybersecurity", "Training", "Awareness"],
         },
       },
     ],
   },
-
   organization: {
     key: "organization",
     tab: "VENDOR - ORGANIZATION",
     sections: [
       {
-        title: "Organization Structure",
+        title: "Influence and Control",
         schema: {
           type: "object",
           properties: {
-            o01: { type: "string", title: "Legal Structure" },
-            o02: { type: "string", title: "Number of Employees" },
-            o03: { type: "string", title: "Publicly Traded" },
+            i01: {
+              type: "array",
+              title: "Countries of Influence",
+              items: {
+                type: "object",
+                properties: {
+                  country: { type: "string", title: "Country" },
+                  percent: { type: "number", title: "Percent" },
+                },
+              },
+            },
+            i02: {
+              type: "array",
+              title: "Operational Countries",
+              items: { type: "string" },
+            },
+            i03: { type: "string", title: "Average Time to Market" },
+            c01: { type: "string", title: "Control Country" },
+            c02: { type: "string", title: "Control Region" },
+            c03: { type: "string", title: "Control Certification" },
           },
         },
         uiSchema: {
           type: "VerticalLayout",
           elements: [
-            { type: "Control", scope: "#/properties/o01" },
-            { type: "Control", scope: "#/properties/o02" },
-            { type: "Control", scope: "#/properties/o03" },
+            { type: "Control", scope: "#/properties/i01" },
+            { type: "Control", scope: "#/properties/i02" },
+            { type: "Control", scope: "#/properties/i03" },
+            { type: "Control", scope: "#/properties/c01" },
+            { type: "Control", scope: "#/properties/c02" },
+            { type: "Control", scope: "#/properties/c03" },
           ],
         },
         data: {
-          o01: "SAS (Société par Actions Simplifiée)",
-          o02: "50-100",
-          o03: "No",
+          i01: [{ country: "France", percent: 100 }],
+          i02: ["France"],
+          i03: "<1 month",
+          c01: "France",
+          c02: "Occitanie",
+          c03: "?unknown",
         },
       },
       {
-        title: "Management",
+        title: "Certifications and Markets",
         schema: {
           type: "object",
           properties: {
-            m01: { type: "string", title: "CEO" },
-            m02: { type: "string", title: "CTO" },
+            t01: { type: "string", title: "Certification 1" },
+            t03: { type: "string", title: "Certification 2" },
+            t06: { type: "string", title: "Certification 3" },
+            t07: { type: "string", title: "Certification 4" },
+            m01: {
+              type: "array",
+              title: "Markets",
+              items: { type: "string" },
+            },
+            m02: {
+              type: "array",
+              title: "Regions of Operation",
+              items: { type: "string" },
+            },
           },
         },
         uiSchema: {
           type: "VerticalLayout",
           elements: [
+            { type: "Control", scope: "#/properties/t01" },
+            { type: "Control", scope: "#/properties/t03" },
+            { type: "Control", scope: "#/properties/t06" },
+            { type: "Control", scope: "#/properties/t07" },
             { type: "Control", scope: "#/properties/m01" },
             { type: "Control", scope: "#/properties/m02" },
           ],
         },
         data: {
-          m01: "John Doe",
-          m02: "Jane Smith",
+          t01: "?unknown",
+          t03: "?unknown",
+          t06: "?unknown",
+          t07: "?unknown",
+          m01: [
+            "agriculture, forestry and fishing",
+            "mining and quarrying",
+            "manufacturing",
+            "electricity, gas",
+          ],
+          m02: ["Europe"],
+        },
+      },
+      {
+        title: "Environmental Impact",
+        schema: {
+          type: "object",
+          properties: {
+            e01: { type: "string", title: "Environmental Certification" },
+            e02: { type: "string", title: "Sustainability Initiatives" },
+          },
+        },
+        uiSchema: {
+          type: "VerticalLayout",
+          elements: [
+            { type: "Control", scope: "#/properties/e01" },
+            { type: "Control", scope: "#/properties/e02" },
+          ],
+        },
+        data: {
+          e01: "?unknown",
+          e02: "?unknown",
         },
       },
     ],
@@ -132,22 +204,28 @@ const tabsData = {
 };
 
 const Vendors: React.FC = () => {
-  const { tab = "main" } = useParams();
+  const { tab = "main" } = useParams<{ tab: string }>();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const activeTabData = tabsData[tab as keyof typeof tabsData];
 
+  if (!activeTabData) {
+    return (
+      <div style={{ padding: "24px", textAlign: "center" }}>
+        <Title level={4}>No data available for this tab.</Title>
+      </div>
+    );
+  }
+
   return (
-    <>
+    <div>
+      {/* Header Section */}
       <div
         style={{
           backgroundColor: "#ffffff",
@@ -161,9 +239,16 @@ const Vendors: React.FC = () => {
       >
         <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
           <Col xs={24} md={8}>
-            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
+            <Card
+              bordered={false}
+              style={{ background: "transparent", boxShadow: "none" }}
+            >
               <Space align="start" style={{ width: "100%" }}>
-                <img src="/normation-logo.png" alt="Normation" style={{ width: 40, height: 40 }} />
+                <img
+                  src="/normation-logo.png"
+                  alt="Normation"
+                  style={{ width: 40, height: 40 }}
+                />
                 <div style={{ flex: 1 }}>
                   <Title level={4} style={{ margin: 0 }}>
                     Normation
@@ -174,8 +259,15 @@ const Vendors: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} md={8}>
-            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
-              <Space direction="vertical" size="small" style={{ width: "100%" }}>
+            <Card
+              bordered={false}
+              style={{ background: "transparent", boxShadow: "none" }}
+            >
+              <Space
+                direction="vertical"
+                size="small"
+                style={{ width: "100%" }}
+              >
                 <AntLink href="https://www.normation.com" target="_blank">
                   https://www.normation.com
                 </AntLink>
@@ -185,7 +277,10 @@ const Vendors: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} md={8}>
-            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
+            <Card
+              bordered={false}
+              style={{ background: "transparent", boxShadow: "none" }}
+            >
               <Space size="small" wrap>
                 <Tag color="blue">Software</Tag>
                 <Tag color="blue">IT Solutions</Tag>
@@ -204,6 +299,8 @@ const Vendors: React.FC = () => {
           }}
         />
       </div>
+
+      {/* Main Content Section */}
       <div
         style={{
           backgroundColor: "#ffffff",
@@ -216,19 +313,19 @@ const Vendors: React.FC = () => {
         }}
       >
         <Space direction="vertical" size="large" style={{ width: "100%" }}>
-          {activeTabData?.sections.map((section, sectionIndex) => (
+          {activeTabData.sections.map((section, sectionIndex) => (
             <Card title={section.title} key={sectionIndex}>
               <JsonForms
                 schema={section.schema}
                 uischema={section.uiSchema}
                 data={section.data}
-                renderers={vanillaRenderers}
+                renderers={renderers}
               />
             </Card>
           ))}
         </Space>
       </div>
-    </>
+    </div>
   );
 };
 
