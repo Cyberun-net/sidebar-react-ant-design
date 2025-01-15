@@ -53,7 +53,7 @@ const CustomHorizontalRenderer = (props: ControlProps) => {
         style={{
           flex: 2,
           padding: "8px",
-          marginLeft: "-350px",
+          marginLeft: "-351px",
           border: "1px solid #d9d9d9",
           borderRadius: "4px",
         }}
