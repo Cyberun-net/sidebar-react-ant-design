@@ -694,7 +694,7 @@ const Solutions: React.FC = () => {
           marginTop: "15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "200%",
+          width: "110%",
         }}
       >
         <Space direction="vertical" size="large" style={{ width: "200%" }}>
