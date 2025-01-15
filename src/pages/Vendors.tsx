@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Row, Col, Card, Space, Typography, Divider, Tag } from "antd";
+import React, { useState, useEffect } from "react";
+import { Card, Typography, Space, Row, Col, Divider, Tag } from "antd";
 import { useParams } from "react-router-dom";
+import { JsonForms } from "@jsonforms/react";
+import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
 
-const { Title, Text, Link: AntLink } = Typography;
+const { Text, Title, Link: AntLink } = Typography;
 
 const tabsData = {
   main: {
@@ -11,45 +13,119 @@ const tabsData = {
     sections: [
       {
         title: "Vendor Information",
-        questions: [
-          {
-            question: "What is the name of the vendor ?",
-            answer: "Normation SAS",
+        schema: {
+          type: "object",
+          properties: {
+            a01: { type: "string", title: "Name" },
+            a02: { type: "string", title: "Vendor" },
+            a07: { type: "string", title: "Address" },
+            a04: { type: "string", format: "uri", title: "Website" },
+            a11: { type: "string", title: "Company Size" },
+            a05: { type: "string", title: "Contact Email" },
+            a06: { type: "string", title: "Phone Number" },
+            a08: { type: "string", title: "Description" },
+            a09: { type: "string", title: "Overview" },
+            a10: {
+              type: "array",
+              title: "Keywords",
+              items: { type: "string" },
+            },
           },
-          {
-            question: "What is the vendor's website ?",
-            answer: "https://www.normation.com",
-          },
-          {
-            question: "What is the vendor's headquarters location ?",
-            answer: "Paris, France",
-          },
-          { question: "Year of establishment ?", answer: "2009" },
-        ],
+        },
+        uiSchema: {
+          type: "VerticalLayout",
+          elements: [
+            { type: "Control", scope: "#/properties/a01" }, // Name
+            { type: "Control", scope: "#/properties/a02" }, // Vendor
+            { type: "Control", scope: "#/properties/a07" }, // Address
+            { type: "Control", scope: "#/properties/a04" }, // Website
+            { type: "Control", scope: "#/properties/a11" }, // Company Size
+            { type: "Control", scope: "#/properties/a05" }, // Contact Email
+            { type: "Control", scope: "#/properties/a06" }, // Phone Number
+            { type: "Control", scope: "#/properties/a08" }, // Description
+            { type: "Control", scope: "#/properties/a09" }, // Overview
+            {
+              type: "Control",
+              scope: "#/properties/a10", // Keywords
+              options: {
+                showSortButtons: false, // Supprime les boutons inutiles
+                showArrayValidation: false, // Supprime les boutons "Add/Delete"
+                detail: {
+                  type: "VerticalLayout",
+                  elements: [
+                    { type: "Label", text: "Keyword List" },
+                    { type: "Control", scope: "#/properties/a10/items" },
+                  ],
+                },
+              },
+            },
+          ],
+        },
+        data: {
+          a01: "Phosforea",
+          a02: "Phosforea",
+          a07: "209 Rue Jean Bart, 31670 Labège",
+          a04: "https://www.phosforea.com/",
+          a11: "11-50",
+          a05: "contact@phosforea.com",
+          a06: "+330561170854",
+          a08: "Cyber awareness and compliance management",
+          a09:
+            "Phosforea, a SaaS publisher of LMS and phishing simulation platforms, supports companies in their cybersecurity awareness and training projects.",
+          a10: ["Cybersecurity", "Training", "Awareness"],
+        },
       },
     ],
   },
+
   organization: {
     key: "organization",
     tab: "VENDOR - ORGANIZATION",
     sections: [
       {
         title: "Organization Structure",
-        questions: [
-          {
-            question: "What is the legal structure of the vendor ?",
-            answer: "SAS (Société par Actions Simplifiée)",
+        schema: {
+          type: "object",
+          properties: {
+            o01: { type: "string", title: "Legal Structure" },
+            o02: { type: "string", title: "Number of Employees" },
+            o03: { type: "string", title: "Publicly Traded" },
           },
-          { question: "Number of employees ?", answer: "50-100" },
-          { question: "Is the vendor publicly traded ?", answer: "No" },
-        ],
+        },
+        uiSchema: {
+          type: "VerticalLayout",
+          elements: [
+            { type: "Control", scope: "#/properties/o01" },
+            { type: "Control", scope: "#/properties/o02" },
+            { type: "Control", scope: "#/properties/o03" },
+          ],
+        },
+        data: {
+          o01: "SAS (Société par Actions Simplifiée)",
+          o02: "50-100",
+          o03: "No",
+        },
       },
       {
         title: "Management",
-        questions: [
-          { question: "Who is the CEO ?", answer: "John Doe" },
-          { question: "Who is the CTO ?", answer: "Jane Smith" },
-        ],
+        schema: {
+          type: "object",
+          properties: {
+            m01: { type: "string", title: "CEO" },
+            m02: { type: "string", title: "CTO" },
+          },
+        },
+        uiSchema: {
+          type: "VerticalLayout",
+          elements: [
+            { type: "Control", scope: "#/properties/m01" },
+            { type: "Control", scope: "#/properties/m02" },
+          ],
+        },
+        data: {
+          m01: "John Doe",
+          m02: "Jane Smith",
+        },
       },
     ],
   },
@@ -70,55 +146,24 @@ const Vendors: React.FC = () => {
 
   const activeTabData = tabsData[tab as keyof typeof tabsData];
 
-  const content = activeTabData ? (
-    <Space direction="vertical" size="large" style={{ width: "100%" }}>
-      {activeTabData.sections.map((section, sectionIndex) => (
-        <Card title={section.title} key={sectionIndex}>
-          <Row gutter={[16, 16]}>
-            {section.questions.map((item, index) => (
-              <Col span={24} key={index}>
-                <Row gutter={[16, 16]}>
-                  <Col xs={24} md={12}>
-                    <Text strong>{item.question}</Text>
-                  </Col>
-                  <Col xs={24} md={12}>
-                    <Text>{item.answer}</Text>
-                  </Col>
-                </Row>
-              </Col>
-            ))}
-          </Row>
-        </Card>
-      ))}
-    </Space>
-  ) : null;
-
   return (
-    <div>
+    <>
       <div
         style={{
           backgroundColor: "#ffffff",
-          padding: "24px",
-          marginTop: "-13px",
+          paddingLeft: "10px",
           marginLeft: "-80px",
+          marginTop: "15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "115%",
+          width: "200%",
         }}
       >
-        {/* Vendor Header */}
         <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
           <Col xs={24} md={8}>
-            <Card
-              bordered={false}
-              style={{ background: "transparent", boxShadow: "none" }}
-            >
+            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
               <Space align="start" style={{ width: "100%" }}>
-                <img
-                  src="/normation-logo.png"
-                  alt="Normation"
-                  style={{ width: 40, height: 40 }}
-                />
+                <img src="/normation-logo.png" alt="Normation" style={{ width: 40, height: 40 }} />
                 <div style={{ flex: 1 }}>
                   <Title level={4} style={{ margin: 0 }}>
                     Normation
@@ -129,15 +174,8 @@ const Vendors: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} md={8}>
-            <Card
-              bordered={false}
-              style={{ background: "transparent", boxShadow: "none" }}
-            >
-              <Space
-                direction="vertical"
-                size="small"
-                style={{ width: "100%" }}
-              >
+            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
+              <Space direction="vertical" size="small" style={{ width: "100%" }}>
                 <AntLink href="https://www.normation.com" target="_blank">
                   https://www.normation.com
                 </AntLink>
@@ -147,10 +185,7 @@ const Vendors: React.FC = () => {
             </Card>
           </Col>
           <Col xs={24} md={8}>
-            <Card
-              bordered={false}
-              style={{ background: "transparent", boxShadow: "none" }}
-            >
+            <Card bordered={false} style={{ background: "transparent", boxShadow: "none" }}>
               <Space size="small" wrap>
                 <Tag color="blue">Software</Tag>
                 <Tag color="blue">IT Solutions</Tag>
@@ -159,18 +194,16 @@ const Vendors: React.FC = () => {
             </Card>
           </Col>
         </Row>
+        <Divider
+          style={{
+            borderColor: "#a349a4",
+            borderWidth: "2px",
+            width: "200%",
+            margin: "0",
+            marginLeft: "-80px",
+          }}
+        />
       </div>
-
-      <Divider
-        style={{
-          borderColor: "#a349a4",
-          borderWidth: "2px",
-          width: "115%",
-          margin: "0",
-          marginLeft: "-80px",
-        }}
-      />
-
       <div
         style={{
           backgroundColor: "#ffffff",
@@ -179,13 +212,23 @@ const Vendors: React.FC = () => {
           marginTop: "15px",
           boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
           borderTopLeftRadius: "14px",
-          width: "115%",
+          width: "200%",
         }}
       >
-        {content}
-        {content}
+        <Space direction="vertical" size="large" style={{ width: "100%" }}>
+          {activeTabData?.sections.map((section, sectionIndex) => (
+            <Card title={section.title} key={sectionIndex}>
+              <JsonForms
+                schema={section.schema}
+                uischema={section.uiSchema}
+                data={section.data}
+                renderers={vanillaRenderers}
+              />
+            </Card>
+          ))}
+        </Space>
       </div>
-    </div>
+    </>
   );
 };
 
