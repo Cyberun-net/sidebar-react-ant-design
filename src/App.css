@@ -211,7 +211,7 @@
 
 .ant-menu .ant-menu-item-selected {
   clip-path: inset(0 0 0 45px);
-  border-radius: 14px;
+  border-radius: 6px;
 }
 
 .ant-layout-sider {

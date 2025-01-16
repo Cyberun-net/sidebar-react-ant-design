@@ -7,14 +7,36 @@ import CustomHorizontalRenderer, {
 } from "../components/CustomHorizontalRenderer";
 
 import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
+import VanillaReadOnly, {
+  vanillaReadOnlyTester,
+} from "../components/VanillaReadOnly";
+import LeftRightDisplay, {
+  leftRightTester,
+} from "../components/LeftRightDisplay";
+import TopBottomDisplay, {
+  topBottomTester,
+} from "../components/TopBottomDisplay";
 
 const renderers = [
   ...vanillaRenderers,
   {
+    tester: vanillaReadOnlyTester,
+    renderer: VanillaReadOnly,
+  },
+  {
     tester: customHorizontalRendererTester,
     renderer: CustomHorizontalRenderer,
   },
+  {
+    tester: leftRightTester,
+    renderer: LeftRightDisplay,
+  },
+  {
+    tester: topBottomTester,
+    renderer: TopBottomDisplay,
+  },
 ];
+
 const { Text, Title, Link: AntLink } = Typography;
 
 const tabsData = {
@@ -27,15 +49,20 @@ const tabsData = {
         schema: {
           type: "object",
           properties: {
-            a01: { type: "string", title: "Name" },
-            a02: { type: "string", title: "Vendor" },
-            a07: { type: "string", title: "Address" },
-            a04: { type: "string", format: "uri", title: "Website" },
-            a11: { type: "string", title: "Company Size" },
-            a05: { type: "string", title: "Contact Email" },
-            a06: { type: "string", title: "Phone Number" },
-            a08: { type: "string", title: "Description" },
-            a09: { type: "string", title: "Overview" },
+            a01: { type: "string", title: "Name", readOnly: true },
+            a02: { type: "string", title: "Vendor", readOnly: true },
+            a07: { type: "string", title: "Address", readOnly: true },
+            a04: {
+              type: "string",
+              format: "uri",
+              title: "Website",
+              readOnly: true,
+            },
+            a11: { type: "string", title: "Company Size", readOnly: true },
+            a05: { type: "string", title: "Contact Email", readOnly: true },
+            a06: { type: "string", title: "Phone Number", readOnly: true },
+            a08: { type: "string", title: "Description", readOnly: true },
+            a09: { type: "string", title: "Overview", readOnly: true },
             a10: {
               type: "array",
               title: "Keywords",
@@ -75,7 +102,7 @@ const tabsData = {
           a05: "contact@phosforea.com",
           a06: "+330561170854",
           a08: "Cyber awareness and compliance management",
-          a09: "Phosforea, a SaaS publisher of LMS and phishing simulation",
+          a09: "Phosforea, a SaaS publisher of LMS and phishing simulation platforms, supports companies in their cybersecurity awareness and training projects. As a creator of e-learning content specialising in cybersecurity, our teams of teaching engineers and IS engineers have designed turnkey awareness-raising programmes and high-level training courses for IT teams (systems and network administration, secure development, etc.). More than 500,000 people have already been made aware of or trained in cyber security. References: BPI France, Michelin, CNES, Saint Gobain, Ariane Espace, Alma, the French Ministry of Culture, Naval Group, Dassault Aviation and many others.",
           a10: ["Cybersecurity", "Training", "Awareness"],
         },
       },
@@ -96,20 +123,28 @@ const tabsData = {
               items: {
                 type: "object",
                 properties: {
-                  country: { type: "string", title: "Country" },
-                  percent: { type: "number", title: "Percent" },
+                  country: { type: "string", title: "Country", readOnly: true },
+                  percent: { type: "number", title: "Percent", readOnly: true },
                 },
               },
             },
             i02: {
               type: "array",
               title: "Operational Countries",
-              items: { type: "string" },
+              items: { type: "string", readOnly: true },
             },
-            i03: { type: "string", title: "Average Time to Market" },
-            c01: { type: "string", title: "Control Country" },
-            c02: { type: "string", title: "Control Region" },
-            c03: { type: "string", title: "Control Certification" },
+            i03: {
+              type: "string",
+              title: "Average Time to Market",
+              readOnly: true,
+            },
+            c01: { type: "string", title: "Control Country", readOnly: true },
+            c02: { type: "string", title: "Control Region", readOnly: true },
+            c03: {
+              type: "string",
+              title: "Control Certification",
+              readOnly: true,
+            },
           },
         },
         uiSchema: {
@@ -137,10 +172,10 @@ const tabsData = {
         schema: {
           type: "object",
           properties: {
-            t01: { type: "string", title: "Certification 1" },
-            t03: { type: "string", title: "Certification 2" },
-            t06: { type: "string", title: "Certification 3" },
-            t07: { type: "string", title: "Certification 4" },
+            t01: { type: "string", title: "Certification 1", readOnly: true },
+            t03: { type: "string", title: "Certification 2", readOnly: true },
+            t06: { type: "string", title: "Certification 3", readOnly: true },
+            t07: { type: "string", title: "Certification 4", readOnly: true },
             m01: {
               type: "array",
               title: "Markets",
@@ -183,15 +218,23 @@ const tabsData = {
         schema: {
           type: "object",
           properties: {
-            e01: { type: "string", title: "Environmental Certification" },
-            e02: { type: "string", title: "Sustainability Initiatives" },
+            e01: {
+              type: "string",
+              title: "Environmental Certification",
+              readOnly: true,
+            },
+            e02: {
+              type: "string",
+              title: "Sustainability Initiatives",
+              readOnly: true,
+            },
           },
         },
         uiSchema: {
           type: "VerticalLayout",
           elements: [
-            { type: "Control", scope: "#/properties/e01" },
-            { type: "Control", scope: "#/properties/e02" },
+            { type: "Control", scope: "#/properties/e01", readOnly: true },
+            { type: "Control", scope: "#/properties/e02", readOnly: true },
           ],
         },
         data: {

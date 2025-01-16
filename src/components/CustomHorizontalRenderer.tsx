@@ -40,9 +40,7 @@ const CustomHorizontalRenderer = (props: ControlProps) => {
           marginRight: "16px",
           fontWeight: "bold",
         }}
-      >
-        {computeLabel(label, required)}
-      </label>
+      ></label>
 
       {/* Champ de saisie à droite */}
       <input
