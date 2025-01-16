@@ -19,12 +19,10 @@ const VanillaReadOnly = ({ data, label }: any) => {
     </div>
   );
 };
-
+export const vanillaReadOnlyTester = rankWith(
+  2, 
+  scopeEndsWith("readOnly") 
+);
 export default withJsonFormsControlProps(VanillaReadOnly);
 
-// Tester function
 
-export const vanillaReadOnlyTester = rankWith(
-  2, // Priorité du renderer
-  scopeEndsWith("readOnly") // Condition : appliquer ce renderer aux champs en lecture seule
-);

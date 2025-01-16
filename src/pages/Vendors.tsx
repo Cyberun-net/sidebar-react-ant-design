@@ -16,6 +16,9 @@ import LeftRightDisplay, {
 import TopBottomDisplay, {
   topBottomTester,
 } from "../components/TopBottomDisplay";
+import MyVanillaEnumControl, {
+  myVanillaEnumTester,
+} from "../components/MyVanillaEnumControl";
 
 const renderers = [
   ...vanillaRenderers,
@@ -34,6 +37,10 @@ const renderers = [
   {
     tester: topBottomTester,
     renderer: TopBottomDisplay,
+  },
+  {
+    tester: myVanillaEnumTester,
+    renderer: MyVanillaEnumControl,
   },
 ];
 
