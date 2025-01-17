@@ -65,12 +65,7 @@ const tabsData = {
               title: "Website",
               readOnly: true,
             },
-            a11: {
-              type: "string",
-              title: "Company Size",
-              readOnly: true,
-              enum: ["1-10", "11-50", "51-200", "201-500", "500+"], 
-            },
+            a11: { type: "string", title: "Company Size", readOnly: true },
             a05: { type: "string", title: "Contact Email", readOnly: true },
             a06: { type: "string", title: "Phone Number", readOnly: true },
             a08: { type: "string", title: "Description", readOnly: true },
@@ -78,9 +73,7 @@ const tabsData = {
             a10: {
               type: "array",
               title: "Keywords",
-              items: {
-                type: "string",
-                enum: ["Innovation", "Technology", "SaaS", "Cybersecurity", "Education"],
+              items: { type: "string" },
             },
           },
         },
@@ -137,12 +130,7 @@ const tabsData = {
               items: {
                 type: "object",
                 properties: {
-                  country: {
-                    type: "string",
-                    title: "Country",
-                    readOnly: true,
-                    enum: ["France", "USA", "Germany", "India", "Japan"], // Liste des pays possibles
-                  },
+                  country: { type: "string", title: "Country", readOnly: true },
                   percent: { type: "number", title: "Percent", readOnly: true },
                 },
               },
@@ -150,37 +138,19 @@ const tabsData = {
             i02: {
               type: "array",
               title: "Operational Countries",
-              items: {
-                type: "string",
-                readOnly: true,
-                enum: ["France", "UK", "Canada", "Australia", "Brazil"], // Pays d'opérations possibles
-              },
+              items: { type: "string", readOnly: true },
             },
             i03: {
               type: "string",
               title: "Average Time to Market",
               readOnly: true,
-              enum: ["<1 Month", "1-3 Months", "3-6 Months", ">6 Months"], // Temps moyen au marché
             },
-            c01: {
-              type: "string",
-              title: "Control Country",
-              readOnly: true,
-              enum: ["France", "Germany", "USA", "China", "Japan"], // Pays de contrôle possibles
-            },
-            c02: {
-              type: "string",
-              title: "Control Region",
-              readOnly: true,
-              enum: ["Europe", "North America", "Asia-Pacific", "South America", "Africa"], 
-            },
+            c01: { type: "string", title: "Control Country", readOnly: true },
+            c02: { type: "string", title: "Control Region", readOnly: true },
             c03: {
               type: "string",
               title: "Control Certification",
               readOnly: true,
-              enum: ["ISO 27001", "SOC 2", "GDPR", "CMMC Level 3"], 
-            },
-            
             },
           },
         },
@@ -392,13 +362,13 @@ const Vendors: React.FC = () => {
           width: "200%",
         }}
       >
-        <Space direction="vertical" size="large" style={{ width: "250%" }}>
-          {activeTabData.sections?.map((section: section, sectionIndex) => (
+        <Space direction="vertical" size="large" style={{ width: "100%" }}>
+          {activeTabData.sections.map((section, sectionIndex) => (
             <Card title={section.title} key={sectionIndex}>
               <JsonForms
                 schema={section.schema}
-                uischema={section.uiSchema || {}}
-                data={section.data || {}}
+                uischema={section.uiSchema}
+                data={section.data}
                 renderers={renderers}
               />
             </Card>
