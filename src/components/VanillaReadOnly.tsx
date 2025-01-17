@@ -19,10 +19,5 @@ const VanillaReadOnly = ({ data, label }: any) => {
     </div>
   );
 };
-export const vanillaReadOnlyTester = rankWith(
-  2, 
-  scopeEndsWith("readOnly") 
-);
+export const vanillaReadOnlyTester = rankWith(2, scopeEndsWith("readOnly"));
 export default withJsonFormsControlProps(VanillaReadOnly);
-
-
