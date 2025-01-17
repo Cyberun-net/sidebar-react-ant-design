@@ -13,9 +13,6 @@ import VanillaReadOnly, {
 import LeftRightDisplay, {
   leftRightTester,
 } from "../components/LeftRightDisplay";
-import TopBottomDisplay, {
-  topBottomTester,
-} from "../components/TopBottomDisplay";
 import MyVanillaEnumControl, {
   myVanillaEnumTester,
 } from "../components/jsonForms/MyVanillaEnumControl";
@@ -33,10 +30,6 @@ const renderers = [
   {
     tester: leftRightTester,
     renderer: LeftRightDisplay,
-  },
-  {
-    tester: topBottomTester,
-    renderer: TopBottomDisplay,
   },
   {
     tester: myVanillaEnumTester,
