@@ -2,34 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Card, Typography, Space, Row, Col, Divider, Tag } from "antd";
 import { useParams } from "react-router-dom";
 import { JsonForms } from "@jsonforms/react";
-import CustomHorizontalRenderer, {
-  customHorizontalRendererTester,
-} from "../components/CustomHorizontalRenderer";
-
-import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
-import VanillaReadOnly, {
-  vanillaReadOnlyTester,
-} from "../components/VanillaReadOnly";
 import LeftRightDisplay, {
   leftRightTester,
-} from "../components/LeftRightDisplay";
+} from "../components/jsonForms/LeftRightDisplay";
 import TopBottomDisplay, {
   topBottomTester,
-} from "../components/TopBottomDisplay";
-import MyVanillaEnumControl, {
-  myVanillaEnumTester,
-} from "../components/jsonForms/MyVanillaEnumControl";
+} from "../components/jsonForms/TopBottomDisplay";
+import VanillaMultiEnum, {
+  VanillaMultiEnumTester,
+} from "../components/jsonForms/VanillaMultiEnum";
+import { vanillaRenderers } from "@jsonforms/vanilla-renderers";
+
 
 const renderers = [
   ...vanillaRenderers,
-  {
-    tester: vanillaReadOnlyTester,
-    renderer: VanillaReadOnly,
-  },
-  {
-    tester: customHorizontalRendererTester,
-    renderer: CustomHorizontalRenderer,
-  },
   {
     tester: leftRightTester,
     renderer: LeftRightDisplay,
@@ -39,8 +25,8 @@ const renderers = [
     renderer: TopBottomDisplay,
   },
   {
-    tester: myVanillaEnumTester,
-    renderer: MyVanillaEnumControl,
+    tester: VanillaMultiEnumTester,
+    renderer: VanillaMultiEnum,
   },
 ];
 

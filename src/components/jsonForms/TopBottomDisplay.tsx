@@ -15,7 +15,7 @@ const TopBottomDisplay: React.FC<ControlProps> = ({ data, label }) => {
         margin: "10px 0",
       }}
     >
-      <div style={{ fontWeight: "bold", marginBottom: "5px" }}>{label}</div>
+      <div style={{ fontWeight: "bold", marginBottom: "5px" }}>topbottom{label}</div>
       <div
         style={{
           whiteSpace: isLongText ? "pre-wrap" : "normal",
@@ -30,7 +30,7 @@ const TopBottomDisplay: React.FC<ControlProps> = ({ data, label }) => {
 };
 
 export const topBottomTester: RankedTester = rankWith(
-  4, // Priorité
+  2, // Priorité
   (uiSchema, schema) =>
     isControl(uiSchema) && // Vérifie que c'est un contrôle
     schema?.type === "string" // Appliqué uniquement aux chaînes
